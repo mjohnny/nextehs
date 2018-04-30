@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('ehs/js/engine1/style.css') }}" />
+{% endblock %}
+
+{% block body %}
+    {{ render(controller('App\\Controller\\DefaultController::showdiapo', {'diapo' : dir})) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('ehs/js/engine1/wowslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('ehs/js/engine1/script.js') }}"></script>
+{% endblock %}

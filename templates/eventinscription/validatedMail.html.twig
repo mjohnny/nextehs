@@ -1,0 +1,31 @@
+{% block subject %}
+    {% autoescape false %}
+        {{ eventinscription.event.title }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}
+    {% autoescape false %}
+        Bonjour {{ eventinscription.firstname }},
+        votre inscription à l'événement {{ eventinscription.event.title }} a été validé.
+        En cas d'empêchement, merci de prévenir au plus vite en envoyant un message à l'adresse contact@ethiquehandicap.com
+        Les membres de l'associations vous remercient.
+    {% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    <div style="width: 100%; margin-bottom: 15px ">
+        <div style="margin-bottom: 5px">
+            <p>
+                Bonjour {{ eventinscription.firstname }},
+                <br>
+                votre inscription à l'événement {{ eventinscription.event.title }} a été validé.
+                En cas d'empêchement, merci de prévenir au plus vite en envoyant un message à l'adresse
+                <a href="mailto:contact@ethiquehandicap.com">contact@ethiquehandicap.com</a>
+            </p>
+        </div>
+        <hr>
+        <p>Les membres de l'association vous remercient.</p>
+    </div>
+    <div>
+        <img src="{{ absolute_url(asset('/ehs/images/ehs.png')) }}" style="max-width: 400px">
+    </div>
+{% endblock %}

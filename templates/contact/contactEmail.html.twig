@@ -1,0 +1,13 @@
+{% block subject %}
+    {% autoescape false %}
+        {{ contact.subject }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}
+    {% autoescape false %}
+       {{ contact.message|nl2br }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    {{ contact.message|nl2br }}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends '@easyadmin/Resources/views/default/layout.html.twig' %}
+
+{% block main %}
+    <div>
+        <section class="content-header">
+
+        </section>
+        <section>
+            {% block entity_form %}
+                <form action="{{ path('gallery_new') }}" method="post" name="creatediapo">
+                {#<form action="#" method="post" name="creatediapo">#}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="diapo">{{ 'form.new diapo'|trans }}</label>
+                                <select name="diapo" id="diapo">
+                                    <option value=0>{{ 'diapo.folder name'|trans }}</option>
+                                    {% if dossiers['forcreate'] is defined %}
+                                        {% for key,dossier in dossiers['forcreate'] %}
+                                            <option value="{{ dossier }}">{{ dossier }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 form-actions">
+                            <div class="form-group">
+                                <div class="form-actions-row">
+                                    <input type="submit" class="btn btn-primary action-save" value="{{ 'button.diapo create'|trans }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% endblock %}
+        </section>
+    </div>
+{% endblock %}

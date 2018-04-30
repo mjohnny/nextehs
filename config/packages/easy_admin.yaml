@@ -1,0 +1,163 @@
+easy_admin:
+    site_name: 'EHS Admin'
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    design:
+        brand_color: 'green'
+        assets:
+            favicon: '/favicon.ico'
+            js:
+                - '/ehs/js/tinymce/tinymce.min.js'
+                - '/ehs/js/initTiny.js'
+        form_theme: 'vertical'
+        menu:
+            - { label: 'menu.home', route: 'homepage', icon: 'home' }
+            - { entity: 'Event', icon: 'calendar' }
+            - { entity: 'Article', icon: 'book' }
+            - { entity: 'User', icon: 'user-circle-o' }
+            - { entity: 'Archive', icon: 'archive' }
+            - { entity: 'Contact', icon: 'envelope-o' }
+            - { label: 'menu.gallery', route: 'gallery_new', icon: 'camera' }
+            - { label: 'menu.newsletter', url: 'https://login.mailchimp.com/', icon: 'paperclip' }
+    list:
+        max_results: 100
+
+    entities:
+        User:
+            class: App\Entity\User
+            label: menu.user
+            list:
+                title: menu.user
+                actions:
+                    - -new
+                    - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'delete', icon: 'trash', label: false }
+                    - { name: 'user_validate', label: action.validated, type: 'route' }
+                fields:
+                    - { property: 'lastname' }
+                    - { property: 'firstname' }
+                    - { property: 'address' }
+                    - { property: 'zipCode', type: 'text' }
+                    - { property: 'city' }
+                    - { property: 'phone' }
+                    - { property: 'getUptodate', type: 'boolean' }
+            edit:
+                fields:
+                    - { property: 'email' }
+                    - { property: 'newsletter' }
+                    - { property: 'lastname' }
+                    - { property: 'firstname' }
+                    - { property: 'address' }
+                    - { property: 'zipCode', type: 'text' }
+                    - { property: 'city' }
+                    - { property: 'phone' }
+                    - { property: 'roles', type: 'choice', type_options: { expanded: true, multiple: true,
+                      choices: { 'User': 'ROLE_USER', 'Press': 'ROLE_PRESSE', 'Moderator': 'ROLE_ADMIN', 'Administrator': 'ROLE_SUPER_ADMIN' } } }
+        Contact:
+            class: App\Entity\Contact
+            list:
+                actions:
+                    - new
+                    - -edit
+                    - { name: 'show', icon: 'eye', label: false }
+                    - { name: 'delete', icon: 'trash', label: false }
+            show:
+                actions:
+                    - -edit
+                    - { name: 'answer', label: action.answer, icon: 'mail-reply', css_class: 'btn btn-primary'}
+
+        Event:
+            class: App\Entity\Event
+            list:
+                actions:
+                    - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'delete', icon: 'trash', label: false }
+                    - { name: 'listRegistered', label: 'action.listRegistered' }
+                fields:
+                    - id
+                    - { property: 'title', type: 'text'}
+                    - startDate
+                    - placeNumber
+                    - archived
+                    - inscriptions
+            form:
+                fields:
+                    - { property: 'title', type: 'text' }
+                    - presentation
+                    - placeNumber
+                    - tag
+                    - startDate
+            edit:
+                fields:
+                    - { property: 'program', type: 'App\Form\ProgramType', type_options: { label_attr: { hidden: hidden} } }
+        Article:
+            class: App\Entity\Article
+            list:
+                actions:
+                    - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'delete', icon: 'trash', label: false }
+                fields:
+                    - id
+                    - createDate
+                    - { property: 'user', label: 'create_modify_by' }
+                    - title
+                    - tag
+                    - publicationDate
+                    - archived
+            form:
+                fields:
+                    - { property: 'createDate', type_options: { disabled: 'disabled', widget: 'single_text', format: 'dd/MM/Y HH:mm' } }
+                    - { property: 'title', type: 'text'}
+                    - { property: 'content', type_options: { required: false} }
+                    - publicationDate
+                    - tag
+                    - { property: 'diapofolder', type: 'App\Form\DiapoFolderType', type_options: { label_attr: { hidden: hidden} } }
+            new:
+                fields:
+                    - { property: 'event', type: 'entity', class: 'App\Entity\Event',
+                                            type_options: { query_builder: App\Repository\EventRepository::available }}
+            edit:
+                fields:
+                    - { property: 'event', type: 'entity', class: 'App\Entity\Event',
+                                            type_options: { query_builder: App\Repository\EventRepository::available }}
+
+        EventInscription:
+            class: App\Entity\EventInscription
+            list:
+                dql_filter: 'entity.event = eventId'
+                actions:
+                    - -search
+                    - -edit
+                    - -new
+                    - { name: 'delete', icon: 'trash', label: false }
+                fields:
+                    - id
+                    - lastname
+                    - firstname
+                    - phone
+                    - email
+                    - { property: 'mobility', type: 'boolean' }
+                    - addInfo
+                    - validated
+
+        Archive:
+            class: App\Entity\Archive
+            list:
+                actions:
+                    - { name: 'show', icon: 'eye', label: false }
+                    - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'delete', icon: 'trash', label: false }
+            form:
+                fields:
+                    - title
+                    - comments
+
+            show:
+                fields:
+                    - user
+                    - title
+                    - comments
+                    - createDate
+                    - modificationDate

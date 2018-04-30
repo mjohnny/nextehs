@@ -1,0 +1,8 @@
+{% extends '@easyadmin/Resources/views/default/list.html.twig' %}
+
+{% block new_action %}
+    <div class="button-action">
+        <a class="{{ _action.css_class|default('') }}" target="_blank"
+           href="https://mail.ovh.net/roundcube/?_user=contact@ethiquehandicap.com">{{ 'action.mailbox'|trans}}</a>
+    </div>
+{% endblock new_action %}

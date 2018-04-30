@@ -1,0 +1,29 @@
+<!-- Start WOWSlider.com BODY section -->
+<div class="container">
+    <div class="row diapogallery">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2> {{ 'diapo.diaporama'|trans ~ ' ' ~ dir }}</h2>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="wowslider-container1">
+                <div class="ws_images">
+                    <ul>
+                        {% for image in images %}
+                            <li><img src="{{ asset('thumbs/gallerie/'~dir~'/'~image) }}" alt="{{ image }}"
+                                     class="img-responsive"></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="ws_shadow"></div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="actions event">
+                <li>
+                    <a href="{{ path('index_gallery') }}" class="button alt">{{ 'diapo.all galleries'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End WOWSlider.com BODY section -->

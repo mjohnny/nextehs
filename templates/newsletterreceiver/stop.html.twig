@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section id="four" class="wrapper style2 special">
+        <div class="inner">
+            <header class="major narrow">
+                <p>{{ 'site.stop newsletter'|trans }}</p>
+            </header>
+            {{ form_start(form) }}
+            <div class="container 75%">
+                <div class="row uniform 50%">
+                    <div class="12u$">
+                        {{ form_widget(form) }}
+                    </div>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" class="special" value="{{ 'form.send'|trans }}"/></li>
+            </ul>
+            {{ form_end(form) }}
+        </div>
+    </section>
+{% endblock %}

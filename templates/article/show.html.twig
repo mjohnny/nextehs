@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {% if article.diapofolder['diapofolder'] is defined and article.diapofolder['diapofolder'] is not null %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('ehs/js/engine1/style.css') }}" />
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <div id="date">{{ 'site.published at'|trans ~' '~ article.publicationDate|localizeddate('none', 'none', null, null, 'd MMMM Y') }}</div>
+            <ul class="actions event">
+                <li>
+                    <a href="{{ bachUrl }}" class="button alt">{{ 'button.back'|trans }}</a>
+                </li>
+                <li>
+                    <div class="fb-share-button"
+                         data-href="{{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.requestUri }}"
+                         data-layout="button" data-size="large" data-mobile-iframe="true"><a
+                                class="fb-xfbml-parse-ignore" target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.requestUri }}%2F&amp;src=sdkpreparse">Partager</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+                    <script>!function (d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0],
+                                p = /^http:/.test(d.location) ? 'http' : 'https';
+                            if (!d.getElementById(id)) {
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = p + '://platform.twitter.com/widgets.js';
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }
+                        }(document, 'script', 'twitter-wjs');</script>
+                </li>
+            </ul>
+
+            <header class="major special">
+                <h2>{{ article.title|raw }}</h2>
+            </header>
+
+            <p>{{ article.content|raw }}</p>
+
+        </div>
+    </section>
+    {% if article.diapofolder['diapofolder'] is defined and article.diapofolder['diapofolder'] is not null %}
+        {{ render(controller('App\\Controller\\DefaultController::showdiapo', {'diapo' : article.diapofolder['diapofolder']})) }}
+    {% endif %}
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.8";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+{% endblock %}
+{% block javascripts %}
+    {% if article.diapofolder['diapofolder'] is defined and article.diapofolder['diapofolder'] is not null %}
+        <script type="text/javascript" src="{{ asset('ehs/js/engine1/wowslider.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('ehs/js/engine1/script.js') }}"></script>
+    {% endif %}
+{% endblock %}

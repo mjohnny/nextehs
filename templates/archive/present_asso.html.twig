@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="main" class="wrapper special">
+        <div class="container">
+            <img src="{{ asset('ehs/images/ehs.png') }}"
+                 class="image fit" alt="logo Ethique handicap et société">
+
+            {{ archive.comments|raw }}<br>
+
+            <ul class="actions">
+                <li><a href="{{ path('fos_user_registration_register') }}" class="button big alt">{{ 'button.join us'|trans }}</a></li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

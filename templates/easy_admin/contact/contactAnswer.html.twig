@@ -1,0 +1,34 @@
+{% extends '@easyadmin/Resources/views/default/layout.html.twig' %}
+
+{% block main %}
+    <div>
+        <section class="content-header">
+            <h2>{{'contact.subject'|trans~' : '~contact.subject }}</h2>
+            <p>{{ contact.message|raw }}</p>
+        </section>
+        <section>
+            {% block entity_form %}
+                <form action="{{ path('contact_answer', {id: contact.id}) }}" method="post" class="form-vertical" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="response">{{ 'answer'|trans }}</label>
+                                <textarea name="response" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 form-actions">
+                            <div class="form-group">
+                                <div class="form-actions-row">
+                                    <button type="submit" class="btn btn-primary action-save">
+                                        <i class="fa fa-reply" aria-hidden="true"></i>{{ 'form.send'|trans }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% endblock entity_form %}
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% block subject %}
+    {% autoescape false %}
+        {{ event.title }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}
+    {% autoescape false %}
+        Bonjour {{ eventinscription.firstname }},
+        votre inscription à l'événement {{ event.title }} a bien été enregistré.
+        Les membres de l'associations vous remercient.
+    {% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    <div style="width: 100%; margin-bottom: 15px ">
+        <div style="margin-bottom: 5px">
+            <p>
+                Bonjour {{ eventinscription.firstname }},
+                <br>
+                votre inscription à l'événement {{ event.title }} a bien été enregistré.
+            </p>
+        </div>
+        <hr>
+        <p>Les membres de l'association vous remercient.</p>
+    </div>
+    <div>
+        <img src="{{ absolute_url(asset('/ehs/images/ehs.png')) }}" style="max-width: 400px">
+    </div>
+{% endblock %}

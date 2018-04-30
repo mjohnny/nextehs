@@ -1,0 +1,29 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: App\Entity\User
+    from_email:
+        address: '%mailer_user%'
+        sender_name: '%site%'
+    registration:
+        confirmation:
+            enabled: true
+            template:   '@FOSUser/Registration/email.html.twig'
+        form:
+            type: App\Form\RegistrationType
+            validation_groups: [Default, ehsRegistration]
+    profile:
+        form:
+            type: App\Form\RegistrationType
+
+    service:
+        mailer: fos_user.mailer.twig_swift
+    resetting:
+        token_ttl: 604800
+        email:
+            from_email:
+                address:        '%mailer_user%'
+                sender_name:    '%site%'
+        form:
+            type:               FOS\UserBundle\Form\Type\ResettingFormType
+            name:               fos_user_resetting_form

@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="box alt">
+            <div class="row">
+                <div class="8u$"><span class="image fit"><img src="{{ asset('ehs/images/ehs.png') }}" alt=""/></span>
+                </div>
+            </div>
+        </div>
+        <p>{{ 'site.subname'|trans }}</p>
+        <ul class="actions">
+            <li><a href="{{ path('present_asso') }}" class="button big special">{{ 'button.learn more'|trans }}</a></li>
+        </ul>
+    </section>
+
+    <!-- Three -->
+    <section id="three" class="wrapper style3 special">
+        <div class="inner">
+            <header class="major narrow	">
+                <h2>{{ nextEvent.title|raw }}</h2>
+                <h4>le {{ nextEvent.startDate|localizeddate('none', 'none', null, null, 'd MMMM Y') }}</h4>
+            </header>
+            <ul class="actions">
+                <li><a href="{{ path('event_show', {'id': nextEvent.getId()}) }}"
+                       class="button big special">{{ 'button.show more'|trans }}</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- One -->
+    {% set feature = ['feature left', 'feature right'] %}
+    <section id="one" class="wrapper style1">
+        <div class="inner">
+            {% for article in articles %}
+                <article class="{{ cycle(feature, loop.index0) }}">
+                    <span class="image"><img id="image{{ loop.index0 }}" src="{{ asset('ehs/images/ehs.png') }}"
+                                             alt="logo ehs"/></span>
+                    <div class="content">
+                        <h2>{{ article.title|raw }}</h2>
+                        <div class="frontShow">
+                            {{ article.content|raw }}
+                        </div>
+                        <ul class="actions">
+                            <li>
+                                <a href="{{ path('article_show', {'id': article.id}) }}"
+                                   class="button alt">{{ "button.show"|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Two -->
+    <section id="two" class="wrapper special">
+        <div class="inner">
+            <header class="major narrow">
+                <h2>galleries photos</h2>
+            </header>
+            <div class="image-grid">
+                {% for image in images %}
+                    <a href="{{ path('index_gallery') }}" class="image"><img src="{{ asset('thumbs/images/14 janvier 2017/'~image) }}"
+                                                   alt="{{ image }}"/></a>
+                {% endfor %}
+            </div>
+            <ul class="actions">
+                <li><a href="{{ path('index_gallery') }}" class="button big alt">{{ 'button.show gallery'|trans }}</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Three -->
+    <section id="three" class="wrapper style3 special">
+        <div class="inner">
+            <header class="major narrow	">
+                <h2>{{ 'site.name'|trans }}</h2>
+                <p>{{ 'site.subname'|trans }}</p>
+            </header>
+            <ul class="actions">
+                <li><a href="{{ path('present_asso') }}" class="button big alt">{{ 'button.learn more'|trans }}</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Four -->
+    <section id="four" class="wrapper style2 special">
+        <div class="inner">
+            <header class="major narrow">
+                <h2>{{ 'site.name'|trans }}</h2>
+                <p>{{ 'site.stay in touch'|trans }}</p>
+            </header>
+            {{ form_start(formContact) }}
+            <div class="container 75%">
+                <div class="row uniform 50%">
+                    <div class="12u$">
+                        {{ form_widget(formContact.email) }}
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        {{ form_widget(formContact.lastname) }}
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        {{ form_widget(formContact.firstname) }}
+                    </div>
+                    <div class="12u$">
+                        {{ form_widget(formContact.subject) }}
+                    </div>
+                    <div class="12u$">
+                        {{ form_widget(formContact.message) }}
+                    </div>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" class="special" value="{{ 'form.send'|trans }}"/></li>
+                <li><input type="reset" class="alt" value="{{ 'form.reset'|trans }}"/></li>
+            </ul>
+            {{ form_end(formContact) }}
+            <div>
+            </div>
+        </div>
+        <div class="inner form-newsletter">
+            <header class="major narrow">
+                <p>{{ 'site.receive newsletter'|trans }}</p>
+            </header>
+            {{ form_start(formNewsletter) }}
+            <div class="container 75%">
+                <div class="row uniform 50%">
+                    <div class="12u$">
+                        {{ form_widget(formNewsletter) }}
+                    </div>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" class="special" value="{{ 'form.send'|trans }}"/></li>
+            </ul>
+            {{ form_end(formNewsletter) }}
+            <a href="{{ path('newsletter_stop') }}">{{ 'site.stop newsletter'|trans }}</a>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('ehs/js/frontShowImg.js') }}"></script>
+{% endblock %}

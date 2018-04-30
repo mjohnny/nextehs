@@ -1,0 +1,3 @@
+zipfalse: le code postal n'est pas valide
+phonefalse: le numéro de téléphone n'est pas au format valide.( ex:01 23 45 67 89 ou 0123456789 )
+emailfalse: l'email {{ value }} n'est pas un email valide

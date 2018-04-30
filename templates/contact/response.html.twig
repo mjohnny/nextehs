@@ -1,0 +1,27 @@
+{% block subject %}
+    {% autoescape false %}
+        {{ contact.subject }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}
+    {% autoescape false %}
+        {{ response|raw }}
+        votre message:
+        {{ contact.message|nl2br }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    <div style="width: 100%; margin-bottom: 15px ">
+        <div style="margin-bottom: 5px">
+            {{ response|raw }}
+        </div>
+        <hr>
+        <div style="margin-bottom: 15px">
+            <div style="margin-bottom: 5px">votre message:</div>
+            <div>{{ contact.message|nl2br }}</div>
+        </div>
+    </div>
+    <div>
+        <img src="{{ absolute_url(asset('/ehs/images/ehs.png')) }}" style="max-width: 400px">
+    </div>
+{% endblock %}

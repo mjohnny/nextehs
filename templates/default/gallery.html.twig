@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set feature = ['feature left', 'feature right'] %}
+    <section id="four" class="wrapper style1 special">
+        <div class="inner">
+            {% for key, value in fichiers %}
+                <article class="{{ cycle(feature, loop.index0) }}">
+                    <span class="image"><img id="image{{ loop.index }}" src="{{ asset('thumbs/gallerie/'~key~'/'~value) }}"
+                                             alt="photo diapo" /></span>
+                    <div class="content">
+                        <h2>{{ key }}</h2>
+                        <ul class="actions">
+                            <li>
+                                <a href="{{ path('diapo_gallery', {'diapo': key}) }}" class="button alt">{{ 'diapo.show'|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

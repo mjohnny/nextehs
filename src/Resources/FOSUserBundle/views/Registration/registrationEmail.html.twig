@@ -1,0 +1,41 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block subject %}
+    {% if user.firstname %}
+        {% set name = user.firstname~' '~user.lastname %}
+    {% else %}
+        {% set name = user.username %}
+    {% endif %}
+    {% autoescape false %}
+        {{ 'registration.email.subject'|trans({'%username%': name}) }}
+    {% endautoescape %}
+{% endblock %}
+{% block body_text %}
+    {% autoescape false %}
+        Bonjour, votre inscription a été validé par les membres de l'association.
+        Nous somme heureux de pouvoir vous compter parmis nous.
+        Vous pouvez désormais initialiser votre mot de passe pour vous connecter à notre site internet en suivant le lien ci-dessous.
+        {{ confirmationUrl }}
+        Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
+    {% endautoescape %}
+{% endblock %}
+{% block body_html %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <p>
+                Bonjour, votre inscription a été validé par les membres de l'association.
+                Nous somme heureux de pouvoir vous compter parmis nous.
+                Vous pouvez désormais initialiser votre mot de passe pour vous connecter à notre site internet en
+                suivant le lien ci-dessous.
+                <br>
+                <a href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>
+                <br>
+                Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
+            </p>
+            <div style="margin: auto">
+                <img src="{{ app.request.schemeAndHttpHost~ asset('ehs/images/ehs.png') }}" alt="logo ehs"
+                     style="max-width: 400px">
+            </div>
+        </div>
+    </section>
+{% endblock %}

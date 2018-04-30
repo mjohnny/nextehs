@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set dispo = event.placeNumber - event.inscriptions|length %}
+    <section id="main" class="wrapper eventShow">
+        <div class="container">
+            <ul class="actions event">
+                <li>
+                    <a href="{{ bachUrl }}" class="button alt">{{ 'button.back'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('program_show', {'id': event.id}) }}"
+                       class="button special">{{ 'button.show program'|trans }}</a>
+                </li>
+                {% if dispo and 'now'|date('Ymd') <= event.startDate|date('Ymd') %}
+                    <li>
+                        <a href="{{ path('event_eventinscription_new', {'id': event.id}) }}"
+                           class="button special">{{ 'button.event register'|trans }}</a>
+                    </li>
+                {% endif %}
+                {% if event.article %}
+                    <li>
+                        <a href="{{ path('article_show', {'id': event.article.id}) }}"
+                           class="button alt">{{ 'button.event access conference'|trans }}</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <div class="fb-share-button"
+                         data-href="{{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.requestUri }}"
+                         data-layout="button" data-size="large" data-mobile-iframe="true"><a
+                                class="fb-xfbml-parse-ignore" target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.requestUri }}%2F&amp;src=sdkpreparse">Partager</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+                    <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0],
+                          p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                          js = d.createElement(s);
+                          js.id = id;
+                          js.src = p + '://platform.twitter.com/widgets.js';
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }
+                      }(document, 'script', 'twitter-wjs');</script>
+                </li>
+            </ul>
+
+            {% if 'now'|date('Ymd') <= event.startDate|date('Ymd') and not dispo %}
+                <div class="bg-info">
+                    <span>{{ 'event.no more place'|trans }}</span>
+                </div>
+            {% endif %}
+
+            <p>{{ event.presentation|raw }}</p>
+
+            <ul class="actions event">
+                <li>
+                    <a href="{{ bachUrl }}" class="button alt">{{ 'button.back'|trans }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('program_show', {'id': event.id}) }}"
+                       class="button special">{{ 'button.show program'|trans }}</a>
+                </li>
+                {% if dispo and 'now'|date('Ymd') <= event.startDate|date('Ymd') %}
+                    <li>
+                        <a href="{{ path('event_eventinscription_new', {'id': event.id}) }}"
+                           class="button special">{{ 'button.event register'|trans }}</a>
+                    </li>
+                {% endif %}
+                {% if event.article %}
+                    <li>
+                        <a href="{{ path('article_show', {'id': event.article.id}) }}"
+                           class="button alt">{{ 'button.event access conference'|trans }}</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <div class="fb-share-button"
+                         data-href="{{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.requestUri }}"
+                         data-layout="button" data-size="large" data-mobile-iframe="true"><a
+                                class="fb-xfbml-parse-ignore" target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.scheme ~ '://' ~ app.request.httpHost ~ app.request.requestUri }}%2F&amp;src=sdkpreparse">Partager</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+                    <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0],
+                          p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                          js = d.createElement(s);
+                          js.id = id;
+                          js.src = p + '://platform.twitter.com/widgets.js';
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }
+                      }(document, 'script', 'twitter-wjs');</script>
+                </li>
+            </ul>
+        </div>
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.12';
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('ehs/js/contentImg.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set feature = ['feature left', 'feature right'] %}
+    <!-- One -->
+    <section id="one" class="wrapper style1">
+        <div class="inner">
+            {% for article in articles %}
+                <article class="{{ cycle(feature, loop.index0) }}">
+                    <span class="image"><img id="image{{ loop.index0 }}" src="{{ asset('ehs/images/ehs.png') }}"
+                                             alt="logo ehs"/></span>
+                    <div class="content">
+                        <h2>{{ article.title|raw }}</h2>
+                        <div class="frontShow">
+                            {{ article.content|raw }}
+                        </div>
+                        <ul class="actions">
+                            <li>
+                                <a href="{{ path('article_show', {'id': article.id}) }}"
+                                   class="button alt">{{ "button.show"|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('ehs/js/frontShowImg.js') }}"></script>
+{% endblock %}

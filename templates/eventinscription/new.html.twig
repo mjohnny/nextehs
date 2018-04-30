@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="main" class="wrapper">
+        <div class="container">
+            <header class="major special">
+                <h2>{{ 'event.Register event'|trans }}:&nbsp;{{ event.title }}</h2>
+            </header>
+
+            <div class="ehs-form">
+                {{ form_start(form) }}
+
+                {{ form_label(form.lastname) }}
+                {{ form_errors(form.lastname) }}
+                {{ form_widget(form.lastname) }}
+
+                {{ form_label(form.firstname) }}
+                {{ form_errors(form.firstname) }}
+                {{ form_widget(form.firstname) }}
+
+                {{ form_label(form.phone) }}
+                {{ form_errors(form.phone) }}
+                {{ form_widget(form.phone) }}
+
+                {{ form_label(form.email) }}
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+
+                {{ form_errors(form.mobility) }}
+                {{ form_widget(form.mobility) }}
+                {{ form_label(form.mobility) }}
+
+                {{ form_rest(form) }}
+                <ul class="actions">
+                    <li>
+                        <a href="{{ path('event_show', {'id': event.id}) }}"
+                           class="button alt">{{ 'button.back'|trans }}</a>
+                    </li>
+                    <li>
+                        <input type="submit" value="{{ 'action.validated'|trans }}" class="button special"/>
+                    </li>
+                </ul>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

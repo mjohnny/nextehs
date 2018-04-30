@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+        <div class="container">
+            <a href="{{ path('event_show', {'id': event.id}) }}" class="button alt">{{ 'button.back'|trans }}</a>
+            <header class="major special">
+                <h2>{{ 'event.program'|trans }}</h2>
+            </header>
+            <p>{{ event.program.program|raw }}</p>
+            <a href="{{ path('event_show', {'id': event.id}) }}" class="button alt">{{ 'button.back'|trans }}</a>
+        </div>
+    </section>
+
+{% endblock %}

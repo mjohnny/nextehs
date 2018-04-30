@@ -1,0 +1,129 @@
+menu:
+    home: Retour au site
+    user: Adhérants
+    contact: Gestion des contacts
+    gallery: Gestion des galleries
+    newsletter: NewsLetter
+
+action:
+    validated: Valider
+    answer: Répondre
+    listRegistered: Liste inscrits
+    mailbox: accès boite mail
+
+create_modify_by: Créer/Modifier par
+
+#property
+ID: ID
+User: Adhérant
+Email: Email
+Lastname: Nom
+Firstname: Prénom
+Address: Adresse
+Zip code: Code postal
+City: Ville
+Phone: Téléphone
+Birth: Date de naissance
+Get uptodate: Adhésion à jour
+Newsletter: Recevoir la newsletter
+Roles: Rôles
+Contact: Contact
+Subject: Sujet
+Message date: Date du message
+Message: Message
+your message: Taper votre message
+answer: Réponse
+Press: Presse
+Moderator: Modérateur
+Administrator: Administrateur
+
+Event: Evénement
+Title: Titre
+Start date: Date de début
+Place number: Place disponible
+Archived: Archivé
+Tag: Catégorie
+Inscriptions : Nombre d'inscrit
+Presentation: Présentation
+Program: Programme
+
+EventInscription: liste des inscrits
+Validated: Valider
+Mobility: PMR
+Mobility_full: Personne à mobilité réduite
+Add info: Information complémentaire
+
+Article: Documentation
+Publication date: Date de publication
+Create date: Date de création/modification
+Content: Contenu
+Diapofolder: Dossier du diapo
+article.diapo.label: Ajouter un diaporama
+article.diapo.placeholder: Choisissez un diaporama
+
+Archive: Archive
+Modification date: Date de modification
+Comments: Commentaire
+
+form:
+    email: Adresse e-mail
+    lastname: Nom ou Raison Sociale
+    firstname: Prénom (Facultatif si Raison Sociale
+    send: Envoyer
+    reset: Effacer
+    new diapo: Créer un diaporama
+
+contact:
+    subject: Sujet du message
+
+########    front #######
+site:
+    name: éthique, handicap et société
+    subname: mieux vivre ensemble
+    stay in touch: restons en contact
+    receive newsletter: s'inscrire à la newsletter
+    stop newsletter: Se désinscrire de la newsletter
+    published at: document publié le
+header:
+    menu:
+        title: Menu
+        asso present: L'association
+        event: événements
+        article: documentations
+        authenticate: s'authentifier
+        profile: profil
+        logout: se déconnecter
+        admin: gestion du site
+        tag:
+            culture: culture
+            ethics: éthique
+            health: santé
+            sport: sport
+            work: travail
+            accessibility: accessibilité
+button:
+    join us: nous rejoindre
+    learn more: nous connaître
+    show more: voir plus
+    show: voir
+    show gallery: voir les galleries
+    back: retour
+    show program: Voir le programme
+    event register: s'inscrire à l'événement
+    event access conference: accéder aux conférences
+    diapo create: créer le diaporama
+link:
+    legales terms: Informations légales
+
+event:
+    no more place: Nous sommes désolés, il n'y a plus de place disponible pour cet événement.
+    inscription ok: Votre inscription a bien été enregistrée.
+    program: programme de la journée
+    Register event: Inscription à l'événement
+
+diapo:
+    show : voir le diaporama
+    diaporama: Diaporama
+    all galleries: toutes les galleries
+    created: Le diaporama a bien été créé.
+    folder name: nom du dossier

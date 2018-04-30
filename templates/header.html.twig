@@ -1,0 +1,39 @@
+<!-- Header -->
+<header id="header" class="skel-layers-fixed">
+    <h1><a href="{{ path('homepage') }}">{{ 'site.name'|trans }}</a></h1>
+    <a href="#nav">{{ 'header.menu.title'|trans }}</a>
+</header>
+
+<!-- Nav -->
+<nav id="nav">
+    <ul class="links">
+        <li><a href="{{ path('homepage') }}">
+                <i class="fa fa-home" aria-hidden="true"></i></a></li>
+        <li><a href="{{ path('present_asso') }}">{{ 'header.menu.asso present'|trans }}</a></li>
+        <li><a href="{{ path('event_index') }}">{{ 'header.menu.event'|trans }}</a></li>
+        <li><a href="{{ path('article_index') }}">{{ 'header.menu.article'|trans }}</a>
+            <ul class="sublinks">
+                <li><a href="{{ path('article_taged', {'id':1 }) }}">{{ 'header.menu.tag.culture'|trans }}</a></li>
+                <li><a href="{{ path('article_taged', {'id':2 }) }}">{{ 'header.menu.tag.ethics'|trans }}</a></li>
+                <li><a href="{{ path('article_taged', {'id':3 }) }}">{{ 'header.menu.tag.health'|trans }}</a></li>
+                <li><a href="{{ path('article_taged', {'id':4 }) }}">{{ 'header.menu.tag.sport'|trans }}</a></li>
+                <li><a href="{{ path('article_taged', {'id':5 }) }}">{{ 'header.menu.tag.work'|trans }}</a></li>
+                <li><a href="{{ path('article_taged', {'id':6 }) }}">{{ 'header.menu.tag.accessibility'|trans }}</a>
+                </li>
+            </ul>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin') }}">{{ 'header.menu.admin'|trans }}</a></li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <li>
+                <a href="{{ path('fos_user_profile_edit') }}">{{ 'header.menu.profile'|trans }}</a>
+                <a href="{{ path('fos_user_security_logout') }}">{{ 'header.menu.logout'|trans }}</a>
+            </li>
+        {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+            <li>
+                <a href="{{ path('fos_user_security_login') }}">{{ 'header.menu.authenticate'|trans }}</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

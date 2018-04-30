@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- One -->
+    {% set feature = ['feature left', 'feature right'] %}
+    <section id="one" class="wrapper style1">
+        <div class="inner">
+            {% for event in events %}
+                <article class="{{ cycle(feature, loop.index0) }}">
+                    <span class="image"><img id="image{{ loop.index0 }}" src="{{ asset('ehs/images/ehs.png') }}"
+                                             alt="logo ehs"/></span>
+                    <div class="content">
+                        <h2>{{ event.title|raw }}</h2>
+                        <div class="frontShow">
+                            {{ event.presentation|raw }}
+                        </div>
+                        <ul class="actions">
+                            <li>
+                                <a href="{{ path('event_show', {'id': event.id}) }}"
+                                   class="button alt">{{ "button.show"|trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('ehs/js/frontShowImg.js') }}"></script>
+{% endblock %}
